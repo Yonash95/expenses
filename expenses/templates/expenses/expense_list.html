@@ -5,7 +5,10 @@
 <a href="{% url 'expenses:expense-create' %}">add</a>
 
 <form method="get" action="">
-  {{form.as_p}}
+  <input name="name" type="text" placeholder="Name">
+  From:<input name="start_date" type="date">
+  To:<input name="end_date" type="date">
+  <input name="amount" type="number" placeholder="Amount">
   <button type="submit">search</button>
 </form>
 <br>
