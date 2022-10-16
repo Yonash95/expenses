@@ -7,6 +7,7 @@
 	<thead>
 		<tr>
 			<th>name</th>
+			<th>count</th>
 			<th>actions</th>
 		</tr>
 	</thead>
@@ -17,11 +18,15 @@
 				{{obj.name}}
 			</td>
 			<td>
+				{{category_count|default:"-"}}
+			</td>
+			<td>
 				<a href="{% url 'expenses:category-edit' obj.id %}">edit</a>
 				<a href="{% url 'expenses:category-delete' obj.id %}">delete</a>
 			</td>
 		</tr>
 		{% endfor %}
 	</tbody>
+</table>
 </table>
 {% endblock %}

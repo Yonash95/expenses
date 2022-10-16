@@ -54,14 +54,12 @@
 <hr>
 <table border="1">
   <caption>Summary per category</caption>
-  <tr>
     {% for category, total in summary_per_category.items %}
 	<tr>
 		<td>{{category}}:</td>
 		<td>{{total|floatformat:2}}</td>
 	</tr>
 	{% endfor %}
-  </tr>
 </table>
 <hr>
 <table border="1">
@@ -73,13 +71,24 @@
 <hr>
 <table border="1">
   <caption>Summary per year-month</caption>
-  <tr>
+
     {% for month, total in summary_per_month.items %}
 	<tr>
 		<td>{{month|date:"M Y"}}:</td>
 		<td>{{total|floatformat:2}}</td>
 	</tr>
 	{% endfor %}
-  </tr>
+</table>
+<hr>
+<table border="1">
+  <caption>Count by Category</caption>
+
+    {% for count, c in category_count.items %}
+	<tr>
+		<td>{{count}}:</td>
+		<td>{{c}}</td>
+	</tr>
+	{% endfor %}
+
 </table>
 {% endblock %}

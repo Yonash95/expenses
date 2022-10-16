@@ -1,6 +1,6 @@
 from collections import OrderedDict
 
-from django.db.models import Sum, Value
+from django.db.models import Sum, Value, Count
 from django.db.models.functions import Coalesce, TruncMonth
 
 
@@ -29,3 +29,11 @@ def summary_per_month(queryset):
         .values_list('month', 's')
     ))
 
+
+def category_count(queryset):
+    return OrderedDict(sorted(queryset
+                              .annotate(category_name=Coalesce('category__name', Value('-')))
+                              .order_by().values("category_name")
+                              .annotate(c=Count("pk"))
+                              .values_list('category_name', 'c')
+                              ))

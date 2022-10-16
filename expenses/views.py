@@ -1,8 +1,9 @@
 from django.views.generic.list import ListView
+from django.shortcuts import render
 
 from .forms import ExpenseSearchForm
 from .models import Expense, Category
-from .reports import summary_per_category, total_amount_spent, summary_per_month
+from .reports import summary_per_category, total_amount_spent, summary_per_month, category_count
 
 
 class ExpenseListView(ListView):
@@ -44,9 +45,13 @@ class ExpenseListView(ListView):
             summary_per_category=summary_per_category(queryset),
             total_amount_spent=total_amount_spent(queryset),
             summary_per_month=summary_per_month(queryset),
+            category_count=category_count(queryset),
             **kwargs)
 
 
 class CategoryListView(ListView):
     model = Category
     paginate_by = 5
+
+    def category_list(self, requests):
+        pass
